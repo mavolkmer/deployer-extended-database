@@ -21,24 +21,39 @@ What does it do?
 ----------------
 
 The package provides additional tasks for deployer (deployer.org) for synchronising databases between instances.
-
-How this can be useful for me?
-------------------------------
-
-The most useful is "db:pull [target]" task which allows you to pull whole database from target instance.
-Having possibility to fast synchronise database can speed up instance dependent development.
+The most useful is "db:pull [target]" task which allows you to pull database from target instance.
 
 Installation
 ------------
+
+1) Install package with composer:
 ::
 
    composer require sourcebroker/deployer-extended-database
 
 
-Task's documentation
---------------------
+2) If you are using deployer as composer package then just put following line in your deploy.php:
+::
 
-Options:
+   new \SourceBroker\DeployerExtendedDatabase\Loader();
+
+
+3) If you are using deployer as phar then put following lines in your deploy.php:
+::
+
+   require __DIR__ . '/vendor/autoload.php';
+   new \SourceBroker\DeployerExtendedDatabase\Loader();
+
+4) After that create ".env" file in your root with one line.
+The INSTANCE must correspond to server() name.
+::
+
+   INSTANCE="local"
+
+You need to put the .env file with proper INSTANCE name on each of you instances.
+
+Options
+-------
 
 - | **caching_tables**
   | *default value:* null
@@ -89,7 +104,6 @@ All of the arrays in each database defined by key will be merged.
    );
 
 Example configuration for TYPO3:
-
 ::
 
    set('db_default', [
@@ -120,6 +134,10 @@ Example configuration for TYPO3:
        ],
        'post_sql_in' => ''
    ]);
+
+
+Tasks
+-----
 
 db:download
 +++++++++++
@@ -239,8 +257,4 @@ and store it on database storage folder.
 ::
 
    dep db:upload live --dumpcode=0772a8d396911951022db5ea385535f6
-
-
-
-
 
