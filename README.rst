@@ -53,7 +53,8 @@ Installation
    | Because there is inclusion of '/vendor/autoload.php' inside deployer realm then sometimes there can be conflict
      of deployer dependencies with you project dependencies. Quite often its about symfony/console version or
      monolog/monolog version because they are most common between projects. In that case use deployer installed as
-     composer package and resolve the dependency errors on composer level. Example of error when you run "dep" command:
+     composer package and resolve the dependency errors on composer level. Example of error when you run "dep" command
+     and there are dependencies problems:
 
      ::
 
