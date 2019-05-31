@@ -7,6 +7,7 @@ master
 
 1) [FEATURE] Add option exportTaskAddIgnoreTablesToStructureDump to allow to add ignore tables when exporting structure.
 2) [FEATURE] Add option importTaskDoNotDropAllTablesBeforeImport to prevent dropping all tables before import.
+3) [BUGFIX] Change dotenv library to Symfony\Dotenv. Fixes wordpress ext dependencies. (possible breaking change)
 
 7.0.2
 ~~~~~

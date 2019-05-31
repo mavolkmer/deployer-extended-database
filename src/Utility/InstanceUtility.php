@@ -2,6 +2,8 @@
 
 namespace SourceBroker\DeployerExtendedDatabase\Utility;
 
+use Symfony\Component\Dotenv\Dotenv;
+
 /**
  * Class InstanceUtility
  * @package SourceBroker\DeployerExtendedDatabase\Utility
@@ -11,12 +13,11 @@ class InstanceUtility
     public function getCurrentInstance()
     {
         if (getenv('INSTANCE') === false && getenv('INSTANCE_DEPLOYER') === false) {
-            $configDir = getcwd();
-            if (file_exists($configDir . '/.env')) {
-                $dotenv = new \Dotenv\Dotenv($configDir);
-                $dotenv->load();
+            $envFilePath = getcwd() . '/.env';
+            if (file_exists($envFilePath)) {
+                (new Dotenv(true))->load($envFilePath);
             } else {
-                throw new \Exception('Missing file "' . $configDir . '/.env"', 1500717945887);
+                throw new \Exception('Missing file "' . $envFilePath . '"', 1500717945887);
             }
         }
         if (getenv('INSTANCE') === false && getenv('INSTANCE_DEPLOYER') === false) {
